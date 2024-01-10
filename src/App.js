@@ -1,25 +1,32 @@
-import logo from './logo.svg';
+
+import { Routes, Route, Navigate } from 'react-router-dom';
+import { PokedexView } from './components/PokedexView';
+import { DetailsView } from './components/DetailsView';
+import { Navigation } from './components/Navigation';
+import { Heading } from './components/Heading';
+import { withRouter } from './HOCs';
+import PokemonsProvider from './context/PokemonsProvider';
+import generations from './data/generations';
+import Footer from './components/Footer/Footer';
 import './App.css';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	return (
+		<PokemonsProvider>
+			<div className="pokedex-app">
+				<Heading />
+				<Navigation />
+				<Routes>
+					<Route path="/" element={<Navigate to={generations[0].link} />} />
+					{generations.map(({ id, link }) => (
+						<Route key={id} path={`/${link}`} element={<PokedexView generation={id} />} />
+					))}
+					</Routes>
+				<DetailsView />
+				<Footer></Footer>
+			</div>
+		</PokemonsProvider>
+	);
 }
 
-export default App;
+export default withRouter( App );

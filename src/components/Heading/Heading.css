@@ -1,0 +1,28 @@
+.heading
+{
+    text-align: center;
+    font-size: 3rem;
+    margin: 1rem 0 4rem;
+    color: #444;
+    position: relative;
+}
+
+.heading::after
+{
+    content: '';
+    position: relative;
+    display: block;
+    width: 4em;
+    height: 5px;
+    background-color: #d24545;
+    top: 100%;
+    left: 50%;
+    margin-left: -2em;
+}
+
+
+.logo {
+    width: auto; /* Ajuste o tamanho conforme necessário */
+    height: 70px;
+    margin-right: 10px; /* Espaçamento entre a imagem e o texto */
+  }
